@@ -732,7 +732,7 @@ def build():
     # CMS: /admin/ is the client's vacancies-only view; /admin/full/ (Sightwise safety login)
     # adds testimonials. Same vacancy fields in both, because full = base config + extras.
     admin_out = OUT / "admin"
-    if (admin_out / "config.yml").exists():
+    if (admin_out / "config.yml").exists() and (ROOT / "admin" / "_full-extra.yml").exists():
         (admin_out / "full").mkdir(exist_ok=True)
         base_cfg = (admin_out / "config.yml").read_text(encoding="utf-8").rstrip() + "\n\n"
         extra_cfg = (ROOT / "admin" / "_full-extra.yml").read_text(encoding="utf-8")

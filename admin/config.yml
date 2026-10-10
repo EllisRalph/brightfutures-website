@@ -1,8 +1,8 @@
 # Bright Futures Recruitment: content manager (Decap CMS)
-# /admin/       = the client's view: VACANCIES ONLY (she can't touch pages, design or testimonials).
-# /admin/full/  = Sightwise's safety view: vacancies + testimonials. build.py generates its config
-#                 from this file plus admin/_full-extra.yml, so edit the vacancy fields here only.
-# Logins are Netlify Identity invites (invite only). Every "Publish" saves a file in content/ and
+# The client and Sightwise both log in at /admin/ (Netlify Identity, invite only) and can edit
+# Vacancies and Testimonials only. Pages, wording and design are NOT editable here (code only).
+# If a per-person view is ever needed again: add an admin/_full-extra.yml and build.py will
+# generate /admin/full/ = this config + those extra collections. Every "Publish" saves a file in content/ and
 # Netlify rebuilds the site (about a minute; each rebuild uses Netlify credits).
 
 backend:
@@ -88,3 +88,24 @@ collections:
         hint: "Use 'Heading 2' for section titles such as The role, About the school, What you'll need and What's on offer. Use bullet points for lists."
       - { label: "Date posted", name: posted, widget: datetime, required: false, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Newest vacancies appear first. Also used by Google for Jobs." }
       - { label: "Closing date", name: closing, widget: datetime, required: false, default: "", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Optional. The vacancy is marked as closed after this date." }
+
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    description: "Reviews and kind words from candidates and schools. They appear on the Testimonials page, and the newest two on the homepage."
+    folder: content/testimonials
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{fields.name}}-{{year}}{{month}}{{day}}"
+    identifier_field: name
+    summary: "{{name}}: {{quote}}"
+    sortable_fields: ["date", "name"]
+    fields:
+      - { label: "Show on website", name: show, widget: boolean, default: true }
+      - { label: "Name", name: name, widget: string, hint: "As the person is happy to be named, for example: Sarah J." }
+      - { label: "Who they are", name: who, widget: string, required: false, hint: "Optional, for example: Teaching assistant, or Headteacher, primary school in Basildon" }
+      - { label: "What they said", name: quote, widget: text }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true }
+      - { label: "Where it came from", name: source, widget: select, default: "Email", options: ["Facebook", "Google", "Email", "In person", "Other"] }
