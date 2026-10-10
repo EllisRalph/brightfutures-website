@@ -7,6 +7,24 @@
   <title>Manage vacancies | Bright Futures Recruitment</title>
   <link rel="icon" type="image/png" href="/assets/img/brand/favicon-32.png">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Phone-friendly editor. Decap forces an 800px-wide editor; on small screens drop the
+       side-by-side preview and let the form fill the screen. Decap's class names carry stable
+       component labels (e.g. "...-EditorContainer"), which these selectors target. */
+    @media (max-width: 799px) {
+      [class*="-EditorContainer"], [class*="-ToolbarContainer"] { min-width: 0 !important; }
+      .SplitPane .Pane2, .SplitPane .Resizer { display: none !important; }
+      .SplitPane .Pane1 { width: 100% !important; flex: 1 1 auto !important; }
+      [class*="-ToolbarContainer"] { padding: 0 8px !important; }
+      [class*="-ToolbarSectionBackLink"] { padding: 0 10px 0 4px !important; }
+      [class*="-ToolbarSectionBackLink"] div:last-child { display: none !important; }
+      [class*="-ToolbarSectionMain"] { padding: 0 6px !important; }
+      [class*="-ToolbarSubSectionFirst"] { gap: 6px; }
+      [class*="-ToolbarButton"], [class*="-PublishedToolbarButton"], [class*="-PublishButton"], [class*="-DeleteButton"] { margin: 0 3px !important; padding: 0 10px !important; }
+      [class*="-ToolbarSectionMeta"] { display: none !important; }
+      [class*="-ControlPaneContainer"] { padding: 0 14px !important; }
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>

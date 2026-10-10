@@ -1,6 +1,6 @@
 # Managing your vacancies
 
-Your website has a simple vacancy manager. You can add, edit and remove jobs yourself, from any computer, phone or tablet.
+Your website has a simple vacancy manager. You can add, edit and remove jobs yourself, from any computer, phone or tablet. (On a phone the editing form fills the screen; the live preview of the job page only shows on a computer or tablet.)
 
 ## Logging in
 1. Go to **brightfuturesrecruitment.com/admin**

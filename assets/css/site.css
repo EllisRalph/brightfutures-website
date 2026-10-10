@@ -743,6 +743,22 @@ body.no-scroll { overflow: hidden; }
 .closed-note .ic { width: 22px; height: 22px; flex: none; }
 .closed-note a { color: #7a2617; font-weight: 700; }
 .job-content > section > h2:first-child { margin-top: 0; }
+.job-hero-cta { margin-top: 24px; }
+/* sticky "Apply" bar on phones and tablets, where the apply form sits below the description */
+.apply-bar { display: none; }
+@media (max-width: 1080px) {
+  .apply-bar {
+    display: flex; gap: 10px; align-items: center; position: fixed; z-index: 60; left: 0; right: 0; bottom: 0;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-top: 1px solid var(--line);
+    box-shadow: 0 -10px 30px -18px rgba(2, 49, 57, 0.4); transform: translateY(110%); transition: transform 0.35s var(--ease);
+  }
+  .apply-bar.show { transform: none; }
+  body:has(.apply-bar) .foot-bottom { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .apply-bar .btn { flex: 1; height: 50px; }
+  .apply-bar-call { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--sky-soft); color: var(--sky-deep); }
+  .apply-bar-call .ic { width: 22px; height: 22px; }
+}
 .menu .menu-all { display: flex; flex-wrap: wrap; gap: 4px 12px; }
 .menu .menu-all a { padding: 8px 10px; }
 @media (max-width: 1320px) { .header-phone .num { display: none; } }
@@ -804,6 +820,23 @@ body.no-scroll { overflow: hidden; }
 }
 @media (max-width: 680px) {
   body { font-size: 1.02rem; }
+  /* phones: 16px+ form text so iOS Safari doesn't zoom in when a field is tapped */
+  .filters input, .filters select, .job-search input, .job-search select,
+  .field input, .field select, .field textarea { font-size: 16px; }
+  /* comfortable tap targets (aim for 44px) */
+  .topbar a { padding: 10px 6px; }
+  .hero-quick a, .link-arrow, .filter-row .btn-reset { padding-top: 11px; padding-bottom: 11px; }
+  .header-phone .ic-wrap, .nav-toggle { width: 44px; height: 44px; }
+  .chip { padding: 12px 16px; }
+  .site-footer ul { gap: 2px; }
+  .site-footer ul a, .foot-legal a { display: inline-block; padding: 9px 0; }
+  .side-card a { padding: 11px 0; }
+  .contact-list a { display: inline-block; padding: 6px 0; }
+  .consent input { width: 22px; height: 22px; margin-top: 0; }
+  /* slightly larger small labels on phones */
+  .eyebrow { font-size: 0.82rem; letter-spacing: 0.12em; }
+  .tag-cat, .tag-type { font-size: 0.82rem; padding: 6px 12px; }
+  .post-card time, .table-note { font-size: 0.9rem; }
   .topbar-links .tb-email, .topbar-links .tb-fb { display: none; }
   .header-phone span.num { display: none; }
   .header-actions .btn { display: none; }

@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_build"
 CONTENT = ROOT / "content"
 OUT = ROOT / "dist"
-ASSET_V = "4"  # bump after CSS/JS edits so browsers fetch fresh copies
+ASSET_V = "7"  # bump after CSS/JS edits so browsers fetch fresh copies
 
 SITE = {
     "name": "Bright Futures Recruitment",
@@ -633,6 +633,7 @@ def job_page(j):
     <h1>{e(j['title'])}</h1>
     <p class="lead">{e(j['summary'])}</p>
     <ul class="job-facts">{''.join(facts)}</ul>
+    <div class="btn-row job-hero-cta"><a class="btn btn-sun" href="#apply">Apply for this role {icon("arrow", "ic-arrow")}</a><a class="btn btn-ghost" href="tel:{SITE['tel']}">{icon("phone")} {SITE['phone']}</a></div>
     <div class="closed-note" data-closing="{j['closing']}" hidden>{icon("clock")}<span>This vacancy has now closed. Take a look at our <a href="/jobs.html">live vacancies</a> or <a href="/register.html">send us your CV</a>.</span></div>
   </div>
 </section>
@@ -658,6 +659,7 @@ def job_page(j):
     </aside>
   </div>
 </section>
+<div class="apply-bar" aria-hidden="true"><a class="btn btn-sun" href="#apply" tabindex="-1">Apply for this role {icon("arrow", "ic-arrow")}</a><a class="apply-bar-call" href="tel:{SITE['tel']}" tabindex="-1" aria-label="Call {SITE['phone']}">{icon("phone")}</a></div>
 <section class="section related">
   <div class="wrap">
     <div class="sec-head-row"><div class="sec-head"><p class="eyebrow">You might also like</p><h2>Similar roles</h2></div><a class="btn btn-ghost" href="/jobs.html">All vacancies {icon("arrow", "ic-arrow")}</a></div>

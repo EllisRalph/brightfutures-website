@@ -17,7 +17,7 @@ image: /assets/img/photos/classroom-hands.jpg
   <div class="wrap">
     <form class="filters" id="job-filters" role="search" aria-label="Filter vacancies" onsubmit="return false">
       <div class="filter-row">
-        <label class="search-field"><span class="hidden-field">Search</span>{{icon:search}}<input type="search" name="q" placeholder="Search by job title, subject or town" autocomplete="off"></label>
+        <label class="search-field"><span class="hidden-field">Search</span>{{icon:search}}<input type="search" name="q" placeholder="Job title, subject or town" autocomplete="off"></label>
         <label><span class="hidden-field">Area</span><select name="area">{{AREA_OPTIONS}}</select></label>
         <label><span class="hidden-field">Contract type</span><select name="type">{{TYPE_OPTIONS}}</select></label>
         <button class="btn-reset" type="button" data-reset>Clear filters</button>
@@ -27,7 +27,7 @@ image: /assets/img/photos/classroom-hands.jpg
 
     <div class="board-head">
       <p class="board-count" aria-live="polite"><span data-count>{{JOB_COUNT}}</span> <span data-count-label>roles</span></p>
-      <a class="link-arrow" href="/register.html">Register for job alerts by sending your CV {{icon:arrow}}</a>
+      <a class="link-arrow" href="/register.html">Send your CV for job alerts {{icon:arrow}}</a>
     </div>
 
     <div class="job-grid" id="job-board">

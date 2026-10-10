@@ -94,6 +94,22 @@
     if (apply) apply.querySelector(".apply-card").hidden = true;
   }
 
+  /* ---------- job pages: sticky Apply bar on small screens ---------- */
+  var applyBar = document.querySelector(".apply-bar");
+  var applyCard = document.querySelector("#apply .apply-card");
+  var heroCta = document.querySelector(".job-hero-cta");
+  if (applyBar && applyCard && "IntersectionObserver" in window) {
+    var seen = { hero: true, form: false };
+    var update = function () {
+      var show = !seen.hero && !seen.form && !applyCard.hidden;
+      applyBar.classList.toggle("show", show);
+      applyBar.setAttribute("aria-hidden", show ? "false" : "true");
+      applyBar.querySelectorAll("a").forEach(function (a) { a.tabIndex = show ? 0 : -1; });
+    };
+    new IntersectionObserver(function (es) { es.forEach(function (en) { seen.form = en.isIntersecting; }); update(); }).observe(document.getElementById("apply"));
+    if (heroCta) new IntersectionObserver(function (es) { es.forEach(function (en) { seen.hero = en.isIntersecting; }); update(); }).observe(heroCta);
+  }
+
   /* ---------- jobs board ---------- */
   var form = document.getElementById("job-filters");
   var board = document.getElementById("job-board");
