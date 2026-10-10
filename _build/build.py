@@ -30,7 +30,7 @@ SITE = {
     "tel": "+441268205620",
     "email": "info@brightfuturesrecruitment.co.uk",
     "facebook": "https://www.facebook.com/people/Bright-Futures-Recruitment/61584992966066/",
-    "locality": "Canvey Island",
+    "locality": "Hockley",
     "region": "Essex",
 }
 JOBPOSTING_SCHEMA = True  # Google for Jobs data on vacancies that have a 'posted' date
