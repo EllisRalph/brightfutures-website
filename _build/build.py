@@ -729,6 +729,19 @@ def build():
         elif src.exists():
             shutil.copy2(src, OUT / name)
 
+    # CMS: /admin/ is the client's vacancies-only view; /admin/full/ (Sightwise safety login)
+    # adds testimonials. Same vacancy fields in both, because full = base config + extras.
+    admin_out = OUT / "admin"
+    if (admin_out / "config.yml").exists():
+        (admin_out / "full").mkdir(exist_ok=True)
+        base_cfg = (admin_out / "config.yml").read_text(encoding="utf-8").rstrip() + "\n\n"
+        extra_cfg = (ROOT / "admin" / "_full-extra.yml").read_text(encoding="utf-8")
+        (admin_out / "full" / "config.yml").write_text(base_cfg + extra_cfg, encoding="utf-8")
+        full_html = (admin_out / "index.html").read_text(encoding="utf-8").replace(
+            "<title>Manage vacancies |", "<title>Sightwise admin |")
+        (admin_out / "full" / "index.html").write_text(full_html, encoding="utf-8")
+        (admin_out / "_full-extra.yml").unlink(missing_ok=True)
+
     written = []
     for f in sorted((SRC / "pages").glob("*.html")):
         meta, body = front_matter(f.read_text(encoding="utf-8"))
