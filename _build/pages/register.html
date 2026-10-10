@@ -1,0 +1,60 @@
+<!--
+title: Submit Your CV | Register with Bright Futures Recruitment
+description: Send your CV to Bright Futures Recruitment and take the first step towards your ideal role in education: teaching, support, SEND, therapy and residential care roles across Essex, London and the UK.
+nav: candidates
+image: /assets/img/photos/hero-reading.jpg
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/">Home</a></li><li><a href="/candidates.html">Candidates</a></li><li>Submit your CV</li></ol>
+    <p class="eyebrow">Submit your CV</p>
+    <h1>Take the first step towards your ideal role</h1>
+    <p class="lead">Send us your CV and we'll showcase your strengths, connect you with opportunities and match you with schools where you can truly make an impact.</p>
+  </div>
+</section>
+
+<section class="section bg-white" style="padding-top:clamp(40px,5vw,64px)">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <h2 style="font-size:1.6rem">What happens next?</h2>
+      <ol class="steps" style="grid-template-columns:1fr;text-align:left;gap:22px;margin-bottom:32px">
+        <li style="display:flex;gap:18px;text-align:left;padding:0"><span class="num" style="margin:0;flex:none;width:52px;height:52px;font-size:1.1rem;box-shadow:none">1</span><span><h3>We read your CV</h3><p>A consultant looks at your experience and the roles you're interested in.</p></span></li>
+        <li style="display:flex;gap:18px;text-align:left;padding:0"><span class="num" style="margin:0;flex:none;width:52px;height:52px;font-size:1.1rem;box-shadow:none">2</span><span><h3>We give you a call</h3><p>A short, friendly chat about what you're looking for and where you'd like to work.</p></span></li>
+        <li style="display:flex;gap:18px;text-align:left;padding:0"><span class="num" style="margin:0;flex:none;width:52px;height:52px;font-size:1.1rem;box-shadow:none">3</span><span><h3>We get you compliant</h3><p>We'll request your documents and help with your enhanced DBS if you need one.</p></span></li>
+        <li style="display:flex;gap:18px;text-align:left;padding:0"><span class="num" style="margin:0;flex:none;width:52px;height:52px;font-size:1.1rem;box-shadow:none">4</span><span><h3>We find your match</h3><p>Then we put you forward for roles that genuinely suit you.</p></span></li>
+      </ol>
+      <div class="card" style="background:var(--cream)">
+        <h3>Prefer to talk first?</h3>
+        <p class="muted">Our team is available Monday to Friday, 9am to 5pm.</p>
+        <div class="btn-row"><a class="btn btn-ghost btn-sm" href="tel:{{TEL}}">{{icon:phone}} {{PHONE}}</a><a class="btn btn-ghost btn-sm" href="mailto:{{EMAIL}}">{{icon:mail}} Email us</a></div>
+      </div>
+    </div>
+    <div class="form-card reveal reveal-d1">
+      <h2>Your details</h2>
+      <form class="form" name="cv-registration" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="cv-registration">
+        <p class="hidden-field"><label>Leave this empty <input name="bot-field"></label></p>
+        <div class="form-row">
+          <div class="field"><label for="r-first">First name</label><input id="r-first" name="first-name" autocomplete="given-name" required></div>
+          <div class="field"><label for="r-last">Last name</label><input id="r-last" name="last-name" autocomplete="family-name" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="r-email">Email</label><input id="r-email" type="email" name="email" autocomplete="email" required></div>
+          <div class="field"><label for="r-phone">Phone</label><input id="r-phone" type="tel" name="phone" autocomplete="tel" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="r-role">Type of role</label><select id="r-role" name="role-type"><option value="">Choose one</option>{{CAT_SELECT}}<option>Not sure yet</option></select></div>
+          <div class="field"><label for="r-work">Work pattern</label><select id="r-work" name="work-pattern"><option>Any</option><option>Day-to-day supply</option><option>Long term</option><option>Permanent</option><option>Temp to perm</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="r-area">Where would you like to work?</label><input id="r-area" name="location" placeholder="Town or postcode area"></div>
+          <div class="field"><label for="r-dbs">Enhanced DBS on the Update Service?</label><select id="r-dbs" name="dbs"><option>Yes</option><option>I have a DBS, not on the Update Service</option><option>No, I'll need help applying</option><option>Not sure</option></select></div>
+        </div>
+        <label class="file-drop"><input type="file" name="cv" accept=".pdf,.doc,.docx,.odt,.rtf" required><span class="ic-wrap">{{icon:upload}}</span><span><b data-file-label>Upload your CV</b><span>PDF or Word, up to 8MB</span></span></label>
+        <div class="field"><label for="r-msg">Anything else we should know? <span class="opt">(optional)</span></label><textarea id="r-msg" name="message" style="min-height:100px"></textarea></div>
+        <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>I agree to Bright Futures Recruitment storing my details and sharing my CV with schools and settings to help me find work, as set out in the <a href="/privacy.html">privacy policy</a>.</span></label>
+        <button class="btn btn-sun" type="submit">Send my CV {{arrow}}</button>
+      </form>
+    </div>
+  </div>
+</section>

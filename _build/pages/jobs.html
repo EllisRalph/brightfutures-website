@@ -1,0 +1,57 @@
+<!--
+title: Education Jobs in Essex and London | Teaching, SEND and Support Roles
+description: Browse live teaching, teaching assistant, SEND, SEMH, therapy and residential support jobs across Essex, London and the UK with Bright Futures Recruitment. Filter by role, area and contract type.
+nav: jobs
+image: /assets/img/photos/classroom-hands.jpg
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/">Home</a></li><li>Jobs</li></ol>
+    <p class="eyebrow">Live vacancies</p>
+    <h1>Find your next role in education</h1>
+    <p class="lead">Teaching, support, specialist and care roles across Essex, London and beyond. Can't see the right fit? <a href="/register.html">Send us your CV</a> and we'll match you as new roles come in.</p>
+  </div>
+</section>
+
+<section class="section bg-white" style="padding-top:clamp(36px,4vw,56px)">
+  <div class="wrap">
+    <form class="filters" id="job-filters" role="search" aria-label="Filter vacancies" onsubmit="return false">
+      <div class="filter-row">
+        <label class="search-field"><span class="hidden-field">Search</span>{{icon:search}}<input type="search" name="q" placeholder="Search by job title, subject or town" autocomplete="off"></label>
+        <label><span class="hidden-field">Area</span><select name="area">{{AREA_OPTIONS}}</select></label>
+        <label><span class="hidden-field">Contract type</span><select name="type">{{TYPE_OPTIONS}}</select></label>
+        <button class="btn-reset" type="button" data-reset>Clear filters</button>
+      </div>
+      <div class="chips" role="group" aria-label="Role type">{{CAT_CHIPS}}</div>
+    </form>
+
+    <div class="board-head">
+      <p class="board-count" aria-live="polite"><span data-count>{{JOB_COUNT}}</span> <span data-count-label>roles</span></p>
+      <a class="link-arrow" href="/register.html">Register for job alerts by sending your CV {{icon:arrow}}</a>
+    </div>
+
+    <div class="job-grid" id="job-board">
+{{JOB_BOARD}}
+    </div>
+    <div class="no-results" id="no-results">
+      <h3>No roles match those filters just now</h3>
+      <p class="muted">Our vacancies change all the time. Send us your CV and we'll be in touch when the right one does.</p>
+      <div class="btn-row" style="justify-content:center"><button class="btn btn-ghost" type="button" data-reset>Clear filters</button><a class="btn btn-sun" href="/register.html">Submit your CV {{arrow}}</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Not seeing the right role?</h2>
+        <p>Our vacancies change all the time. Register with us and your consultant will match you to new opportunities as they come in.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-sun" href="/register.html">Submit your CV {{arrow}}</a>
+        <a class="btn btn-outline-light" href="tel:{{TEL}}">{{icon:phone}} {{PHONE}}</a>
+      </div>
+    </div>
+  </div>
+</section>

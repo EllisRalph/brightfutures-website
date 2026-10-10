@@ -1,0 +1,59 @@
+<!--
+title: Contact Us | Bright Futures Recruitment | 01268 205620
+description: Get in touch with Bright Futures Recruitment. Call 01268 205620 or email info@brightfuturesrecruitment.co.uk, Monday to Friday 9am to 5pm. Candidates and schools welcome.
+nav: contact
+image: /assets/img/photos/contact-smile.jpg
+org: yes
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/">Home</a></li><li>Contact</li></ol>
+    <p class="eyebrow">Contact us</p>
+    <h1>Let's talk</h1>
+    <p class="lead">Whether you're looking for work or looking for staff, our friendly team is here to help. Call, email or send us a message.</p>
+  </div>
+</section>
+
+<section class="section bg-white" style="padding-top:clamp(40px,5vw,64px)">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <ul class="contact-list">
+        <li><span class="c-ic">{{icon:phone}}</span><span><small>Call the team</small><a href="tel:{{TEL}}">{{PHONE}}</a></span></li>
+        <li><span class="c-ic">{{icon:mail}}</span><span><small>Email us</small><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></span></li>
+        <li><span class="c-ic">{{icon:facebook}}</span><span><small>Follow us</small><a href="{{FACEBOOK}}" target="_blank" rel="noopener">Bright Futures on Facebook</a></span></li>
+        <li><span class="c-ic">{{icon:pin}}</span><span><small>Based in</small><strong>Canvey Island, Essex</strong></span></li>
+      </ul>
+      <div class="card">
+        <h3 style="display:flex;align-items:center;gap:10px">{{icon:clock}} Opening hours</h3>
+        <table class="hours" data-hours>
+          <tr data-day="1"><td>Monday</td><td>9am to 5pm</td></tr>
+          <tr data-day="2"><td>Tuesday</td><td>9am to 5pm</td></tr>
+          <tr data-day="3"><td>Wednesday</td><td>9am to 5pm</td></tr>
+          <tr data-day="4"><td>Thursday</td><td>9am to 5pm</td></tr>
+          <tr data-day="5"><td>Friday</td><td>9am to 5pm</td></tr>
+          <tr data-day="6"><td>Saturday</td><td>Closed</td></tr>
+          <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="form-card reveal reveal-d1">
+      <h2>Send us a message</h2>
+      <p class="muted">Looking for work? You can also <a href="/register.html">upload your CV here</a>. Need staff? Use our <a href="/schools.html#enquiry">school enquiry form</a>.</p>
+      <form class="form" name="contact" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hidden-field"><label>Leave this empty <input name="bot-field"></label></p>
+        <div class="form-row">
+          <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="c-who">I am a</label><select id="c-who" name="enquiry-type"><option>Candidate looking for work</option><option>School or setting looking for staff</option><option>Something else</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" name="email" autocomplete="email" required></div>
+          <div class="field"><label for="c-phone">Phone <span class="opt">(optional)</span></label><input id="c-phone" type="tel" name="phone" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+        <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>I agree to Bright Futures Recruitment using these details to respond to my message, as set out in the <a href="/privacy.html">privacy policy</a>.</span></label>
+        <button class="btn btn-teal" type="submit">Send message {{arrow}}</button>
+      </form>
+    </div>
+  </div>
+</section>

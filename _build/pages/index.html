@@ -1,0 +1,242 @@
+<!--
+title: Education Recruitment in Essex and London | Bright Futures Recruitment
+description: Bright Futures Recruitment places teachers, teaching assistants, SEND and SEMH specialists, therapists and residential support workers with schools across Essex, London and the UK. Fully vetted, KCSIE compliant, paid weekly.
+nav: home
+org: yes
+-->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Education and SEND recruitment in Essex</p>
+      <h1 class="reveal reveal-d1">Placing people. <span class="line2">Shaping <span class="hl">futures.</span></span></h1>
+      <p class="lead reveal reveal-d2">We connect passionate teachers, support staff and specialists with schools and settings that need them, from day-to-day supply to permanent roles, with safeguarding at the heart of every placement.</p>
+      <form class="job-search reveal reveal-d3" action="/jobs.html" method="get" role="search" aria-label="Search jobs">
+        <label><span class="hidden-field">Job title or keyword</span>{{icon:search}}<input type="search" name="q" placeholder="Job title or keyword" autocomplete="off"></label>
+        <label><span class="hidden-field">Role type</span>{{icon:briefcase}}<select name="cat"><option value="">All role types</option>{{CAT_OPTIONS}}</select></label>
+        <button class="btn btn-sun" type="submit">Search jobs</button>
+      </form>
+      <div class="hero-quick reveal reveal-d3">
+        <span>{{JOB_COUNT}} live vacancies</span>
+        <a href="/register.html">Send us your CV {{icon:arrow}}</a>
+        <a href="/schools.html">I need staff for my school {{icon:arrow}}</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-d2">
+      <svg class="rays" viewBox="0 0 600 300" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="14" stroke-linecap="round">
+          <path d="M300 34v52"/><path d="M178 66l26 45"/><path d="M422 66l-26 45"/><path d="M90 146l45 26"/><path d="M510 146l-45 26"/>
+        </g>
+      </svg>
+      <div class="arch"><img src="/assets/img/photos/hero-reading.jpg" alt="A teaching assistant reading with a young pupil in a school library" width="2000" height="1632" fetchpriority="high"></div>
+      <div class="float-card float-a"><span class="badge-ic">{{icon:shield}}</span><span><b>Fully vetted</b><span>Enhanced DBS and KCSIE checks</span></span></div>
+      <div class="float-card float-b"><span class="badge-ic">{{icon:wallet}}</span><span><b>Paid weekly</b><span>On supply placements</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust" aria-label="Why Bright Futures">
+  <div class="wrap">
+    <ul>
+      <li>{{icon:sun}}<span><b>20+ years</b>in education recruitment</span></li>
+      <li>{{icon:shield}}<span><b>KCSIE compliant</b>vetting on every candidate</span></li>
+      <li>{{icon:puzzle}}<span><b>Specialist SEND</b>and SEMH division</span></li>
+      <li>{{icon:wallet}}<span><b>Weekly pay</b>for supply staff</span></li>
+      <li>{{icon:handshake}}<span><b>A dedicated consultant</b>for every candidate</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">How can we help?</p>
+      <h2>Whichever side of the classroom door you're on</h2>
+      <p class="lead">We take the time to understand what you need, then find the right fit. For today, and for the future.</p>
+    </div>
+    <div class="paths">
+      <a class="path reveal" href="/candidates.html">
+        <img src="/assets/img/photos/classroom-hands-sm.jpg" alt="" loading="lazy" width="900" height="600">
+        <div class="path-body">
+          <span class="tag">For candidates</span>
+          <h3>Find a role where you can thrive</h3>
+          <p>Day-to-day supply, long-term placements and permanent posts, with a consultant who's on your side from your first call.</p>
+          <ul><li>Teachers</li><li>Teaching assistants</li><li>SEND and SEMH</li><li>Therapists</li><li>Residential care</li></ul>
+          <span class="link-arrow">Working with Bright Futures {{icon:arrow}}</span>
+        </div>
+      </a>
+      <a class="path for-schools reveal reveal-d1" href="/schools.html">
+        <img src="/assets/img/photos/classroom-teacher-sm.jpg" alt="" loading="lazy" width="900" height="560">
+        <div class="path-body">
+          <span class="tag">For schools</span>
+          <h3>Safe, reliable staff when you need them</h3>
+          <p>From an early-morning absence call to a hard-to-fill permanent post, we send vetted people who are ready to make a difference.</p>
+          <ul><li>Ad hoc supply</li><li>Long-term cover</li><li>Permanent recruitment</li><li>Partnership agreements</li></ul>
+          <span class="link-arrow">Our school services {{icon:arrow}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="wrap">
+    <div class="sec-head-row reveal">
+      <div class="sec-head">
+        <p class="eyebrow">Latest vacancies</p>
+        <h2>Roles we're recruiting for now</h2>
+        <p class="lead">A snapshot of our live roles across Essex, London and beyond.</p>
+      </div>
+      <a class="btn btn-teal" href="/jobs.html">View all {{JOB_COUNT}} jobs {{arrow}}</a>
+    </div>
+    <div class="job-grid">
+{{LATEST_JOBS}}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Roles we recruit for</p>
+      <h2>Every role a school, setting or home relies on</h2>
+      <p class="lead">Teachers across every age range and subject, support staff, specialists and the people behind the scenes.</p>
+    </div>
+    <div class="cat-grid">
+{{CAT_TILES}}
+    </div>
+  </div>
+</section>
+
+<section class="section bg-teal safe">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Vetting and safeguarding</p>
+      <h2>The safety of every child comes first</h2>
+      <p class="lead">We follow the latest Department for Education guidance, Keeping Children Safe in Education (KCSIE), so every candidate we put forward meets the highest safeguarding standards.</p>
+      <div class="safe-note">{{icon:file}}<span>For your peace of mind, schools receive a detailed vetting form confirming every check we've completed on each candidate.</span></div>
+      <p style="margin-top:28px"><a class="btn btn-sun" href="/schools.html#vetting">How we vet candidates {{arrow}}</a></p>
+    </div>
+    <ul class="check-grid reveal reveal-d1">
+      <li><span class="tick">{{icon:check}}</span>Comprehensive background and identity checks</li>
+      <li><span class="tick">{{icon:check}}</span>Right to work verification</li>
+      <li><span class="tick">{{icon:check}}</span>Enhanced DBS and barred list checks</li>
+      <li><span class="tick">{{icon:check}}</span>Teaching Regulation Agency (TRA) and Education Workforce Council (EWC) checks</li>
+      <li><span class="tick">{{icon:check}}</span>Overseas police checks, where applicable</li>
+      <li><span class="tick">{{icon:check}}</span>Verification of qualifications</li>
+      <li><span class="tick">{{icon:check}}</span>References covering recent employment</li>
+      <li><span class="tick">{{icon:check}}</span>Assessment of professional suitability</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-media reveal">
+        <div class="arch"><img src="/assets/img/photos/one-to-one-workbook-sm.jpg" alt="A teacher supporting a pupil with a workbook in a specialist classroom" loading="lazy" width="900" height="581"></div>
+        <div class="stamp"><span><b>20+</b>years placing education staff</span></div>
+      </div>
+      <div class="reveal reveal-d1">
+        <p class="eyebrow">Our commitment</p>
+        <h2>Brighter futures start with the right people in the right places</h2>
+        <p>At Bright Futures Recruitment we're passionate about supporting education professionals at every stage of their journey. Our mission is to help you find work that matches your skills and ambitions, and lets you thrive and make a real difference.</p>
+        <p>We partner with all types of schools, from Essex, Kent and London to the Midlands and the North. Our specialist SEND division supports schools and professionals who work with children and young people with additional needs.</p>
+        <ul class="check-list">
+          <li><span class="tick">{{icon:check}}</span>Caring consultants who take time to understand you</li>
+          <li><span class="tick">{{icon:check}}</span>Practical advice and genuine encouragement, every step of the way</li>
+          <li><span class="tick">{{icon:check}}</span>Relationships that last beyond a single placement</li>
+        </ul>
+        <div class="btn-row" style="margin-top:26px"><a class="btn btn-teal" href="/about.html">About Bright Futures {{arrow}}</a><a class="link-arrow" href="/send-recruitment.html">Our SEND division {{icon:arrow}}</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">Getting started</p>
+      <h2>From first call to first day</h2>
+      <p class="lead">Registering with us is simple, and we'll support you all the way through.</p>
+    </div>
+    <ol class="steps">
+      <li class="reveal"><span class="num">1</span><h3>Register</h3><p>Send us your CV, or call the team for a quick chat about what you're looking for.</p></li>
+      <li class="reveal reveal-d1"><span class="num">2</span><h3>Talk to us</h3><p>Your consultant gets to know your experience, goals and the kind of school you'll love.</p></li>
+      <li class="reveal reveal-d2"><span class="num">3</span><h3>Compliance</h3><p>We complete your checks, and can help you apply for an enhanced DBS if you need one.</p></li>
+      <li class="reveal reveal-d3"><span class="num">4</span><h3>Start work</h3><p>You're placed in the right setting, paid weekly, and we stay in touch throughout.</p></li>
+    </ol>
+    <div class="btn-row reveal" style="justify-content:center;margin-top:48px"><a class="btn btn-sun" href="/register.html">Submit your CV {{arrow}}</a><a class="btn btn-ghost" href="tel:{{TEL}}">{{icon:phone}} {{PHONE}}</a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+{{REVIEWS}}
+  </div>
+</section>
+
+<section class="section bg-sky">
+  <div class="wrap areas">
+    <div class="reveal">
+      <p class="eyebrow">Where we work</p>
+      <h2>Rooted in Essex, working across the UK</h2>
+      <p class="lead">Most of our schools and settings are across Essex and east London, and we place staff with partner schools throughout the UK.</p>
+      <p><a class="link-arrow" href="/jobs.html">Browse jobs by area {{icon:arrow}}</a></p>
+    </div>
+    <ul class="area-chips reveal reveal-d1">
+      <li>{{icon:pin}}Basildon</li><li>{{icon:pin}}Southend-on-Sea</li><li>{{icon:pin}}Leigh-on-Sea</li><li>{{icon:pin}}Canvey Island</li>
+      <li>{{icon:pin}}Chelmsford</li><li>{{icon:pin}}Colchester</li><li>{{icon:pin}}Braintree</li><li>{{icon:pin}}Witham</li>
+      <li>{{icon:pin}}Thurrock</li><li>{{icon:pin}}Harlow</li><li>{{icon:pin}}Romford</li><li>{{icon:pin}}Shoeburyness</li>
+      <li>{{icon:pin}}Redbridge</li><li>{{icon:pin}}Ipswich</li>
+      <li class="wide">{{icon:globe}}London and Kent</li><li class="wide">{{icon:globe}}Hertfordshire</li><li class="wide">{{icon:globe}}The Midlands and the North</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head-row reveal">
+      <div class="sec-head">
+        <p class="eyebrow">Useful information</p>
+        <h2>Resources for education professionals</h2>
+      </div>
+      <a class="btn btn-ghost" href="/resources.html">All resources {{arrow}}</a>
+    </div>
+    <div class="res-grid">
+      <a class="res-card reveal" href="/resources.html#pay-scales"><span class="res-ic">{{icon:pound}}</span><h3>Teacher pay scales</h3><p>Main, upper and leadership pay ranges for England, including London.</p><span class="link-arrow">See the scales {{icon:arrow}}</span></a>
+      <a class="res-card reveal reveal-d1" href="/resources.html#dbs"><span class="res-ic">{{icon:shield}}</span><h3>DBS Update Service</h3><p>Keep your certificate up to date and take it from role to role.</p><span class="link-arrow">How it works {{icon:arrow}}</span></a>
+      <a class="res-card reveal reveal-d2" href="/resources.html#ta-courses"><span class="res-ic">{{icon:cap}}</span><h3>TA courses</h3><p>Recognised qualifications for supporting teaching and learning.</p><span class="link-arrow">Find a course {{icon:arrow}}</span></a>
+      <a class="res-card reveal reveal-d3" href="/faq.html"><span class="res-ic">{{icon:chat}}</span><h3>FAQs</h3><p>Registering, DBS checks, getting paid and the support you'll get.</p><span class="link-arrow">Read the answers {{icon:arrow}}</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="wrap">
+    <div class="sec-head-row reveal">
+      <div class="sec-head">
+        <p class="eyebrow">From the blog</p>
+        <h2>News and insight</h2>
+      </div>
+      <a class="btn btn-ghost" href="/blog.html">All posts {{arrow}}</a>
+    </div>
+    <div class="post-grid">
+{{POST_CARDS_3}}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div>
+        <h2>Ready for your next role?</h2>
+        <p>Send us your CV and a friendly consultant will be in touch to talk through what you're looking for. Prefer to talk now? Call the team on <a href="tel:{{TEL}}" style="color:#fff">{{PHONE}}</a>.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-sun" href="/register.html">Submit your CV {{arrow}}</a>
+        <a class="btn btn-outline-light" href="/schools.html#enquiry">Request staff</a>
+      </div>
+    </div>
+  </div>
+</section>

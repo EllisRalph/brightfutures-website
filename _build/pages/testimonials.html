@@ -1,0 +1,58 @@
+<!--
+title: Testimonials | What Candidates and Schools Say | Bright Futures Recruitment
+description: Read what teachers, support staff and schools say about working with Bright Futures Recruitment, and share your own experience.
+nav: testimonials
+image: /assets/img/photos/consultant.jpg
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/">Home</a></li><li>Testimonials</li></ol>
+    <p class="eyebrow">Testimonials</p>
+    <h1>Kind words from the people we work with</h1>
+    <p class="lead">We're proud of the relationships we build with our candidates and partner schools. Here's what some of them have said about working with us.</p>
+  </div>
+</section>
+
+<section class="section bg-white" style="padding-top:clamp(40px,5vw,64px)">
+  <div class="wrap">
+    <div class="testimonial-grid">
+{{TESTIMONIAL_CARDS}}
+      <div class="testimonial-cta reveal">
+        <span class="t-ic">{{icon:facebook}}</span>
+        <h3>100% recommend us on Facebook</h3>
+        <p>Every person who has reviewed Bright Futures Recruitment on Facebook recommends us.</p>
+        <a class="btn btn-teal btn-sm" href="{{FACEBOOK}}" target="_blank" rel="noopener">See our Facebook page {{icon:external}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="leave-a-review">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="eyebrow">Share your experience</p>
+      <h2>Worked with us? We'd love to hear from you</h2>
+      <p class="lead">Whether we placed you in a role or supplied staff to your school, your feedback helps others find the right agency, and helps us keep getting better.</p>
+      <ul class="check-list">
+        <li><span class="tick">{{icon:check}}</span>It only takes a minute</li>
+        <li><span class="tick">{{icon:check}}</span>We'll always ask before publishing your name</li>
+        <li><span class="tick">{{icon:check}}</span>You can also leave us a review on <a href="{{FACEBOOK}}" target="_blank" rel="noopener">Facebook</a></li>
+      </ul>
+    </div>
+    <div class="form-card reveal reveal-d1">
+      <h2>Leave a testimonial</h2>
+      <form class="form" name="testimonial" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="testimonial">
+        <p class="hidden-field"><label>Leave this empty <input name="bot-field"></label></p>
+        <div class="form-row">
+          <div class="field"><label for="t-name">Your name</label><input id="t-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="t-who">I am a</label><select id="t-who" name="who"><option>Candidate we placed</option><option>School or setting we work with</option><option>Something else</option></select></div>
+        </div>
+        <div class="field"><label for="t-role">Your role <span class="opt">(optional)</span></label><input id="t-role" name="role" placeholder="e.g. Teaching assistant, or Headteacher"></div>
+        <div class="field"><label for="t-msg">Your testimonial</label><textarea id="t-msg" name="testimonial" required></textarea></div>
+        <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>I'm happy for Bright Futures Recruitment to publish my testimonial on its website, with my first name and initial.</span></label>
+        <button class="btn btn-sun" type="submit">Send testimonial {{arrow}}</button>
+      </form>
+    </div>
+  </div>
+</section>

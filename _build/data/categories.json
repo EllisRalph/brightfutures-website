@@ -1,0 +1,52 @@
+[
+  {
+    "id": "primary",
+    "label": "Primary",
+    "blurb": "Class teachers and support staff for nursery, infant and junior schools."
+  },
+  {
+    "id": "secondary",
+    "label": "Secondary",
+    "blurb": "Subject teachers from KS3 to sixth form, ECTs welcome."
+  },
+  {
+    "id": "send",
+    "label": "SEND",
+    "blurb": "Teachers and HLTAs for specialist provision and advisory services."
+  },
+  {
+    "id": "semh",
+    "label": "SEMH",
+    "blurb": "Teachers, TAs and leaders for SEMH and therapeutic schools."
+  },
+  {
+    "id": "cover-supervisors",
+    "label": "Cover supervisors",
+    "blurb": "Keep learning on track when teachers are away."
+  },
+  {
+    "id": "teaching-assistants",
+    "label": "Teaching assistants",
+    "blurb": "Classroom and one-to-one support across all settings."
+  },
+  {
+    "id": "lsa",
+    "label": "Learning support assistants",
+    "blurb": "Targeted one-to-one and small group support."
+  },
+  {
+    "id": "residential",
+    "label": "Residential children's homes",
+    "blurb": "Support workers and managers for children's homes."
+  },
+  {
+    "id": "therapy",
+    "label": "Therapy",
+    "blurb": "Speech and language therapists and occupational therapists."
+  },
+  {
+    "id": "other-school-roles",
+    "label": "Other school roles",
+    "blurb": "Caretakers, office staff, invigilators and more."
+  }
+]

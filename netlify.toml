@@ -1,0 +1,10 @@
+# Netlify builds the site from the sources on every push and every CMS save.
+[build]
+  command = "python _build/build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.13"
+  # PREVIEW ONLY: keeps search engines out while the site is on brightfuturesrecruitment.netlify.app.
+  # DELETE this line at go-live, when the real domain points here.
+  NOINDEX = "1"

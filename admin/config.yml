@@ -1,0 +1,107 @@
+# Bright Futures Recruitment: content manager (Decap CMS)
+# The client logs in at /admin/ with the email and password from her Netlify Identity invite.
+# Every "Publish" saves a file in content/ and Netlify rebuilds the site (about a minute).
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "Add {{collection}}: {{slug}}"
+    update: "Update {{collection}}: {{slug}}"
+    delete: "Remove {{collection}}: {{slug}}"
+
+# Lets us test the editor locally with `npx decap-server`; ignored on the live site.
+local_backend: true
+
+site_url: https://brightfuturesrecruitment.com
+display_url: https://brightfuturesrecruitment.com
+logo_url: /assets/img/brand/logo-520.png
+locale: en
+
+media_folder: assets/img/uploads
+public_folder: /assets/img/uploads
+
+collections:
+  - name: jobs
+    label: Vacancies
+    label_singular: Vacancy
+    description: >-
+      Add, edit or remove job vacancies. Click Publish when you're done and the website updates
+      in about a minute. To take a job down without deleting it, switch off "Show on website".
+    folder: content/jobs
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{title}}-{{fields.location}}"
+    identifier_field: title
+    summary: "{{title}}, {{location}}"
+    sortable_fields: ["posted", "title", "category"]
+    view_filters:
+      - { label: "Live on the website", field: live, pattern: true }
+      - { label: "Hidden", field: live, pattern: false }
+    view_groups:
+      - { label: "Role type", field: category }
+    fields:
+      - { label: "Show on website", name: live, widget: boolean, default: true, hint: "Switch off to hide this vacancy without deleting it." }
+      - { label: "Feature on the homepage", name: featured, widget: boolean, default: false, required: false, hint: "Featured vacancies appear first in the homepage's latest vacancies." }
+      - { label: "Job title", name: title, widget: string, hint: "For example: SEMH Teaching Assistant" }
+      - label: "Role type"
+        name: category
+        widget: select
+        options:
+          - { label: "Primary", value: "primary" }
+          - { label: "Secondary", value: "secondary" }
+          - { label: "SEND", value: "send" }
+          - { label: "SEMH", value: "semh" }
+          - { label: "Cover supervisors", value: "cover-supervisors" }
+          - { label: "Teaching assistants", value: "teaching-assistants" }
+          - { label: "Learning support assistants", value: "lsa" }
+          - { label: "Residential children's homes", value: "residential" }
+          - { label: "Therapy", value: "therapy" }
+          - { label: "Other school roles", value: "other-school-roles" }
+      - { label: "Location", name: location, widget: string, hint: "Town and county, for example: Basildon, Essex" }
+      - label: "Area (used by the search filter)"
+        name: area
+        widget: select
+        default: "Essex"
+        options: ["Essex", "London", "Kent", "Hertfordshire", "Suffolk", "Cambridgeshire", "Nottinghamshire", "The Midlands", "The North", "Elsewhere in the UK"]
+      - label: "Contract type"
+        name: type
+        widget: select
+        default: "Permanent"
+        options: ["Permanent", "Temp to perm", "Long term", "Fixed term", "Term time only", "Supply", "Day to day"]
+      - { label: "Hours", name: hours, widget: string, required: false, hint: "For example: Full time, or Part time (3 days)" }
+      - { label: "Start date", name: start, widget: string, required: false, hint: "For example: ASAP, or January 2027" }
+      - { label: "Pay", name: pay, widget: string, required: false, hint: "For example: £100 to £120 a day. Leave blank if you'd rather not show pay." }
+      - { label: "Short summary", name: summary, widget: text, hint: "One or two sentences. Shown on the job card and in Google results." }
+      - label: "Full job description"
+        name: body
+        widget: markdown
+        modes: [rich_text]
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list]
+        editor_components: []
+        hint: "Use 'Heading 2' for section titles such as The role, About the school, What you'll need and What's on offer. Use bullet points for lists."
+      - { label: "Date posted", name: posted, widget: datetime, required: false, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Newest vacancies appear first. Also used by Google for Jobs." }
+      - { label: "Closing date", name: closing, widget: datetime, required: false, default: "", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Optional. The vacancy is marked as closed after this date." }
+
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    description: "Reviews and kind words from candidates and schools. They appear on the Testimonials page, and the newest two on the homepage."
+    folder: content/testimonials
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{fields.name}}-{{year}}{{month}}{{day}}"
+    identifier_field: name
+    summary: "{{name}}: {{quote}}"
+    sortable_fields: ["date", "name"]
+    fields:
+      - { label: "Show on website", name: show, widget: boolean, default: true }
+      - { label: "Name", name: name, widget: string, hint: "As the person is happy to be named, for example: Sarah J." }
+      - { label: "Who they are", name: who, widget: string, required: false, hint: "Optional, for example: Teaching assistant, or Headteacher, primary school in Basildon" }
+      - { label: "What they said", name: quote, widget: text }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true }
+      - { label: "Where it came from", name: source, widget: select, default: "Email", options: ["Facebook", "Google", "Email", "In person", "Other"] }

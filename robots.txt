@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /_build/
+Disallow: /thank-you.html
+
+Sitemap: https://brightfuturesrecruitment.com/sitemap.xml
