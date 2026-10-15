@@ -16,9 +16,8 @@ backend:
 # Lets us test the editor locally with `npx decap-server`; ignored on the live site.
 local_backend: true
 
-# netlify.app keeps working after go-live (it forwards to the custom domain)
-site_url: https://brightfuturesrecruitment.netlify.app
-display_url: https://brightfuturesrecruitment.netlify.app
+site_url: https://brightfuturesrecruitment.com
+display_url: https://brightfuturesrecruitment.com
 logo_url: /assets/img/brand/logo-520.png
 locale: en
 
