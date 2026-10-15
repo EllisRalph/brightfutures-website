@@ -1,3 +1,7 @@
+# Extra address (Netlify domain alias) -> the main domain, so Google sees one site
+https://www.brightfuturesrecruitment.co.uk/*  https://brightfuturesrecruitment.com/:splat  301!
+http://www.brightfuturesrecruitment.co.uk/*   https://brightfuturesrecruitment.com/:splat  301!
+
 # Old GoDaddy URLs -> new pages (301 keeps any Google ranking the old pages had)
 /why-we-do%2C-what-we-do      /about.html                         301
 /why-we-do,-what-we-do        /about.html                         301
