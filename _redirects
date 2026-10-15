@@ -13,7 +13,7 @@
 /lsa                          /jobs.html?cat=lsa                  301
 /other-school-roles           /jobs.html?cat=other-school-roles   301
 /residential-children-home    /jobs.html?cat=residential          301
-/therapy                      /jobs.html?cat=therapy              301
+/therapy                      /jobs.html?cat=speech-language-therapy  301
 /submit-your-cv               /register.html                      301
 /school-services              /schools.html                       301
 /blog                         /blog.html                          301
@@ -28,3 +28,8 @@
 /faq                          /faq.html                           301
 /contact-us                   /contact.html                       301
 /privacy-policy               /privacy.html                       301
+
+# Vacancy pages whose CMS file names contained an en dash (served as 404 until 2026-10-15)
+/jobs/send-teacher-%E2%80%93-special-primary-school-redbridge.html                 /jobs/send-teacher-special-primary-school-redbridge.html                 301
+/jobs/send-teacher-%E2%80%93-special-school-mld-complex-needs-east-london.html     /jobs/send-teacher-special-school-mld-complex-needs-east-london.html     301
+/jobs/autism-provision-teacher-%E2%80%93-primary-send-chemlsford.html              /jobs/autism-provision-teacher-primary-send-chemlsford.html              301

@@ -1,0 +1,34 @@
+{
+  "locations": [
+    {
+      "name": "Essex"
+    },
+    {
+      "name": "London"
+    },
+    {
+      "name": "Kent"
+    },
+    {
+      "name": "Hertfordshire"
+    },
+    {
+      "name": "Suffolk"
+    },
+    {
+      "name": "Cambridgeshire"
+    },
+    {
+      "name": "Nottinghamshire"
+    },
+    {
+      "name": "The Midlands"
+    },
+    {
+      "name": "The North"
+    },
+    {
+      "name": "Elsewhere in the UK"
+    }
+  ]
+}

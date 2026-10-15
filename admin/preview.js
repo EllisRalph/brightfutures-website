@@ -9,7 +9,8 @@
     "primary": "Primary", "secondary": "Secondary", "send": "SEND", "semh": "SEMH",
     "cover-supervisors": "Cover supervisors", "teaching-assistants": "Teaching assistants",
     "lsa": "Learning support assistants", "residential": "Residential children's homes",
-    "therapy": "Therapy", "other-school-roles": "Other school roles"
+    "teachers": "Teachers", "hlta": "HLTAs", "speech-language-therapy": "Speech and language therapists",
+    "occupational-therapy": "Occupational therapists", "other-school-roles": "Other school roles"
   };
 
   var JobPreview = createClass({

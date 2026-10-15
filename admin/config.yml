@@ -22,6 +22,12 @@ display_url: https://brightfuturesrecruitment.netlify.app
 logo_url: /assets/img/brand/logo-520.png
 locale: en
 
+# Plain a-z web addresses for new entries (no dashes like "–", accents or spaces)
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 media_folder: assets/img/uploads
 public_folder: /assets/img/uploads
 
@@ -54,22 +60,29 @@ collections:
         name: category
         widget: select
         options:
+          - { label: "Teachers", value: "teachers" }
           - { label: "Primary", value: "primary" }
           - { label: "Secondary", value: "secondary" }
-          - { label: "SEND", value: "send" }
-          - { label: "SEMH", value: "semh" }
-          - { label: "Cover supervisors", value: "cover-supervisors" }
+          - { label: "SEND School / PRU", value: "send" }
+          - { label: "SEMH School", value: "semh" }
+          - { label: "HLTAs (higher level teaching assistants)", value: "hlta" }
           - { label: "Teaching assistants", value: "teaching-assistants" }
           - { label: "Learning support assistants", value: "lsa" }
+          - { label: "Cover supervisors", value: "cover-supervisors" }
+          - { label: "Speech and language therapists", value: "speech-language-therapy" }
+          - { label: "Occupational therapists", value: "occupational-therapy" }
           - { label: "Residential children's homes", value: "residential" }
-          - { label: "Therapy", value: "therapy" }
           - { label: "Other school roles", value: "other-school-roles" }
       - { label: "Location", name: location, widget: string, hint: "Town and county, for example: Basildon, Essex" }
       - label: "Area (used by the search filter)"
         name: area
-        widget: select
-        default: "Essex"
-        options: ["Essex", "London", "Kent", "Hertfordshire", "Suffolk", "Cambridgeshire", "Nottinghamshire", "The Midlands", "The North", "Elsewhere in the UK"]
+        widget: relation
+        collection: locations
+        file: locations
+        search_fields: ["locations.*.name"]
+        display_fields: ["locations.*.name"]
+        value_field: "locations.*.name"
+        hint: "Pick from your Locations list. To add a new area, go to Locations (in the left-hand menu) and add it there first."
       - label: "Contract type"
         name: type
         widget: select
@@ -86,8 +99,8 @@ collections:
         buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list]
         editor_components: []
         hint: "Use 'Heading 2' for section titles such as The role, About the school, What you'll need and What's on offer. Use bullet points for lists."
-      - { label: "Date posted", name: posted, widget: datetime, required: false, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Newest vacancies appear first. Also used by Google for Jobs." }
-      - { label: "Closing date", name: closing, widget: datetime, required: false, default: "", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Optional. The vacancy is marked as closed after this date." }
+      - { label: "Date posted", name: posted, widget: datetime, required: false, format: "YYYY-MM-DD", time_format: false, picker_utc: true, hint: "Newest vacancies appear first. Also used by Google for Jobs. Pick the date from the calendar." }
+      - { label: "Closing date", name: closing, widget: datetime, required: false, default: "", format: "YYYY-MM-DD", time_format: false, picker_utc: true, hint: "Optional. Pick from the calendar. The vacancy disappears from the website after this date." }
 
   - name: testimonials
     label: Testimonials
@@ -107,5 +120,24 @@ collections:
       - { label: "Name", name: name, widget: string, hint: "As the person is happy to be named, for example: Sarah J." }
       - { label: "Who they are", name: who, widget: string, required: false, hint: "Optional, for example: Teaching assistant, or Headteacher, primary school in Basildon" }
       - { label: "What they said", name: quote, widget: text }
-      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", time_format: false, picker_utc: true }
       - { label: "Where it came from", name: source, widget: select, default: "Email", options: ["Facebook", "Google", "Email", "In person", "Other"] }
+
+  - name: locations
+    label: Locations
+    description: "The areas people can filter vacancies by on the Jobs page. Add a new area here, then pick it in the Area box when you add a vacancy."
+    editor:
+      preview: false
+    files:
+      - label: "Locations list"
+        name: locations
+        file: content/settings/locations.json
+        fields:
+          - label: "Locations"
+            name: locations
+            widget: list
+            label_singular: "location"
+            summary: "{{fields.name}}"
+            add_to_top: false
+            fields:
+              - { label: "Location", name: name, widget: string, hint: "For example: Essex, East London, Suffolk" }

@@ -135,6 +135,8 @@
       type.value = state.type;
       if (area.value !== state.area) state.area = "";
       if (type.value !== state.type) state.type = "";
+      // an out-of-date role type in a link (e.g. ?cat=therapy) shows all jobs, not an empty board
+      if (state.cat && !chips.some(function (c) { return c.dataset.cat === state.cat; })) state.cat = "";
     }
 
     function writeParams() {

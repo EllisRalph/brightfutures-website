@@ -1,5 +1,10 @@
 [
   {
+    "id": "teachers",
+    "label": "Teachers",
+    "blurb": "Qualified teachers for every age range, subject and setting, ECTs welcome."
+  },
+  {
     "id": "primary",
     "label": "Primary",
     "blurb": "Class teachers and support staff for nursery, infant and junior schools."
@@ -11,18 +16,18 @@
   },
   {
     "id": "send",
-    "label": "SEND",
-    "blurb": "Teachers and HLTAs for specialist provision and advisory services."
+    "label": "SEND School / PRU",
+    "blurb": "Teachers and support staff for special schools and pupil referral units."
   },
   {
     "id": "semh",
-    "label": "SEMH",
+    "label": "SEMH School",
     "blurb": "Teachers, TAs and leaders for SEMH and therapeutic schools."
   },
   {
-    "id": "cover-supervisors",
-    "label": "Cover supervisors",
-    "blurb": "Keep learning on track when teachers are away."
+    "id": "hlta",
+    "label": "HLTAs",
+    "blurb": "Higher level teaching assistants who teach, cover and lead interventions."
   },
   {
     "id": "teaching-assistants",
@@ -35,14 +40,24 @@
     "blurb": "Targeted one-to-one and small group support."
   },
   {
+    "id": "cover-supervisors",
+    "label": "Cover supervisors",
+    "blurb": "Keep learning on track when teachers are away."
+  },
+  {
+    "id": "speech-language-therapy",
+    "label": "Speech and language therapists",
+    "blurb": "SALTs supporting communication in schools and specialist settings."
+  },
+  {
+    "id": "occupational-therapy",
+    "label": "Occupational therapists",
+    "blurb": "OTs supporting sensory, motor and life skills for pupils."
+  },
+  {
     "id": "residential",
     "label": "Residential children's homes",
     "blurb": "Support workers and managers for children's homes."
-  },
-  {
-    "id": "therapy",
-    "label": "Therapy",
-    "blurb": "Speech and language therapists and occupational therapists."
   },
   {
     "id": "other-school-roles",

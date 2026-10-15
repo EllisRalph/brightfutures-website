@@ -14,6 +14,7 @@ import json
 import os
 import re
 import shutil
+import unicodedata
 from datetime import date, datetime
 from pathlib import Path
 
@@ -21,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_build"
 CONTENT = ROOT / "content"
 OUT = ROOT / "dist"
-ASSET_V = "7"  # bump after CSS/JS edits so browsers fetch fresh copies
+ASSET_V = "8"  # bump after CSS/JS edits so browsers fetch fresh copies
 
 SITE = {
     "name": "Bright Futures Recruitment",
@@ -84,6 +85,8 @@ ICONS = {
     "id": '<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h4M14 14h4"/>',
     "globe": '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
     "running": '<circle cx="13" cy="4" r="2"/><path d="m4 22 4-7 3 2 1-5 3 3h4M8 11l2-4 5 1"/>',
+    "award": '<circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/>',
+    "activity": '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
 }
 
 
@@ -104,7 +107,10 @@ CAT_META = {
     "teaching-assistants": ("users", "school"),
     "lsa": ("smile", "school"),
     "residential": ("home", "care"),
-    "therapy": ("chat", "specialist"),
+    "teachers": ("book", "school"),
+    "hlta": ("award", "school"),
+    "speech-language-therapy": ("chat", "specialist"),
+    "occupational-therapy": ("activity", "specialist"),
     "other-school-roles": ("wrench", "school"),
 }
 
@@ -114,15 +120,36 @@ CATS = json.loads((SRC / "data/categories.json").read_text(encoding="utf-8"))
 CAT_BY_ID = {c["id"]: c for c in CATS}
 
 
+def sane_date(iso, label=""):
+    """YYYY-MM-DD from 2000 on, else '' (guards against the 1906-.. dates the CMS once produced)."""
+    iso = (iso or "")[:10]
+    if iso and (not re.match(r"^\d{4}-\d{2}-\d{2}$", iso) or iso < "2000-01-01"):
+        print(f"  ! ignoring impossible date {iso!r} {label}")
+        return ""
+    return iso
+
+
+def slugify(text):
+    """Plain a-z/0-9 web address. CMS file names once contained an en dash (–), which Netlify
+    served as 404, so page URLs never use the raw file name."""
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    return re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9]+", "-", text.lower())).strip("-") or "vacancy"
+
+
 def load_jobs():
-    jobs = []
+    jobs, used = [], set()
     for f in sorted((CONTENT / "jobs").glob("*.json")):
         j = json.loads(f.read_text(encoding="utf-8"))
-        j["slug"] = f.stem
+        slug = base = slugify(f.stem)
+        n = 2
+        while slug in used:
+            slug, n = f"{base}-{n}", n + 1
+        used.add(slug)
+        j["slug"] = slug
         for k in ("title", "location", "hours", "start", "pay", "summary", "posted", "closing", "body", "area", "type"):
             j[k] = str(j.get(k) or "").strip()
-        j["posted"] = (j["posted"] or "")[:10]
-        j["closing"] = (j["closing"] or "")[:10]
+        j["posted"] = sane_date(j["posted"], f"(posted, {f.name})")
+        j["closing"] = sane_date(j["closing"], f"(closing, {f.name})")
         if j["category"] not in CAT_BY_ID:
             print(f"  ! {f.name}: unknown category {j['category']!r}, skipped")
             continue
@@ -150,7 +177,7 @@ TESTIMONIALS = []
 for f in sorted((CONTENT / "testimonials").glob("*.json")):
     t = json.loads(f.read_text(encoding="utf-8"))
     if t.get("show", True) and (t.get("quote") or "").strip():
-        t["date"] = (t.get("date") or "")[:10]
+        t["date"] = sane_date(t.get("date"), f"(testimonial {f.name})")
         TESTIMONIALS.append(t)
 TESTIMONIALS.sort(key=lambda t: t["date"], reverse=True)
 
@@ -180,7 +207,7 @@ def md_to_html(md):
             for i, line in enumerate(para):
                 hard = line.endswith("\\") or line.endswith("  ")
                 line = line.rstrip("\\").rstrip()
-                joined += md_inline(line) + ("<br>" if hard and i < len(para) - 1 else " ")
+                joined += md_inline(line) + ("<br>" if i < len(para) - 1 else "")
             out.append(f"<p>{joined.strip()}</p>")
             para.clear()
 
@@ -302,7 +329,7 @@ def header(active):
         return ' aria-current="page"' if key == active else ""
 
     job_menu = "".join(
-        f'<li><a href="/jobs.html?cat={c["id"]}">{icon(CAT_META[c["id"]][0])}{e(c["label"])}<span class="count">{COUNTS[c["id"]]}</span></a></li>'
+        f'<li><a href="/jobs.html?cat={c["id"]}">{icon(CAT_META[c["id"]][0])}{e(c["label"])}{f'<span class="count">{COUNTS[c["id"]]}</span>' if COUNTS[c["id"]] else ""}</a></li>'
         for c in CATS)
     res_menu = "".join(f'<li><a href="{u}">{icon(i)}{e(t)}</a></li>' for t, u, i in RESOURCE_LINKS)
     items = []
@@ -426,7 +453,7 @@ def footer(flush=False):
       <div class="foot-legal">
         <a href="/privacy.html">Privacy policy</a>
         <a href="/contact.html">Contact</a>
-        <span class="credit">Site by <b>Sightwise</b></span>
+        <span class="credit">Site by <a href="https://sightwise.studio" target="_blank" rel="noopener"><b>Sightwise</b></a></span>
       </div>
     </div>
   </div>
@@ -485,7 +512,7 @@ def cat_tiles():
         n = COUNTS[c["id"]]
         out.append(f"""<a class="cat-tile reveal reveal-d{i % 4}" data-group="{group}" href="/jobs.html?cat={c['id']}">
   <span class="cat-ic">{icon(ic)}</span><h3>{e(c['label'])}</h3><p>{e(c['blurb'])}</p>
-  <span class="count">{n} live role{'s' if n != 1 else ''}</span></a>""")
+  <span class="count">{f"{n} live role{'s' if n != 1 else ''}" if n else "Register your interest"}</span></a>""")
     return "\n".join(out)
 
 
@@ -545,7 +572,10 @@ def options(values, all_label):
 
 
 def replace_tokens(body):
-    areas = sorted({j["area"] for j in JOBS}, key=lambda a: (a != "Essex", a))
+    # area filter follows the client's Locations list order (content/settings/locations.json)
+    loc_file = CONTENT / "settings" / "locations.json"
+    loc_order = [str(l.get("name", "")).strip() for l in json.loads(loc_file.read_text(encoding="utf-8")).get("locations", [])] if loc_file.exists() else []
+    areas = sorted({j["area"] for j in JOBS}, key=lambda a: (loc_order.index(a) if a in loc_order else len(loc_order), a))
     types = ["Permanent", "Temp to perm", "Long term", "Fixed term", "Term time only", "Supply", "Day to day"]
     types = [t for t in types if any(j["type"] == t for j in JOBS)]
     chips = f'<button class="chip" type="button" data-cat="" aria-pressed="true">All roles<span class="n">{len(JOBS)}</span></button>' + "".join(
@@ -553,6 +583,7 @@ def replace_tokens(body):
         for c in CATS if COUNTS[c["id"]])
     tokens = {
         "{{JOB_COUNT}}": str(len(JOBS)),
+        "{{CAT_COUNT}}": str(len(CATS)),
         "{{LATEST_JOBS}}": "\n".join(job_card(j, f" reveal reveal-d{i % 3}") for i, j in enumerate(LATEST)),
         "{{SEND_JOBS}}": "\n".join(job_card(j) for j in JOBS if j["category"] in ("send", "semh")),
         "{{SEND_COUNT}}": str(sum(1 for j in JOBS if j["category"] in ("send", "semh"))),
