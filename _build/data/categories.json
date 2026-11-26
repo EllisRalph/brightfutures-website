@@ -15,14 +15,29 @@
     "blurb": "Subject teachers from KS3 to sixth form, ECTs welcome."
   },
   {
-    "id": "send",
-    "label": "SEND School / PRU",
-    "blurb": "Teachers and support staff for special schools and pupil referral units."
+    "id": "semh-primary",
+    "label": "SEMH Primary",
+    "blurb": "Teachers, TAs and leaders for primary SEMH and therapeutic schools."
   },
   {
-    "id": "semh",
-    "label": "SEMH School",
-    "blurb": "Teachers, TAs and leaders for SEMH and therapeutic schools."
+    "id": "semh-secondary",
+    "label": "SEMH Secondary",
+    "blurb": "Teachers, TAs and leaders for secondary SEMH and therapeutic schools."
+  },
+  {
+    "id": "alternative-provision",
+    "label": "Alternative Provision",
+    "blurb": "Teachers and support staff for pupils learning outside mainstream school."
+  },
+  {
+    "id": "pru",
+    "label": "PRU",
+    "blurb": "Teachers and support staff for pupil referral units."
+  },
+  {
+    "id": "send",
+    "label": "SEND School",
+    "blurb": "Teachers and support staff for special schools."
   },
   {
     "id": "hlta",

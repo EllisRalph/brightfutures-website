@@ -62,8 +62,11 @@ collections:
           - { label: "Teachers", value: "teachers" }
           - { label: "Primary", value: "primary" }
           - { label: "Secondary", value: "secondary" }
-          - { label: "SEND School / PRU", value: "send" }
-          - { label: "SEMH School", value: "semh" }
+          - { label: "SEMH Primary", value: "semh-primary" }
+          - { label: "SEMH Secondary", value: "semh-secondary" }
+          - { label: "Alternative Provision", value: "alternative-provision" }
+          - { label: "PRU (pupil referral unit)", value: "pru" }
+          - { label: "SEND School", value: "send" }
           - { label: "HLTAs (higher level teaching assistants)", value: "hlta" }
           - { label: "Teaching assistants", value: "teaching-assistants" }
           - { label: "Learning support assistants", value: "lsa" }

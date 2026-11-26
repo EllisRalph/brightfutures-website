@@ -6,7 +6,8 @@
   CMS.registerPreviewStyle("body{padding:28px;background:#fef8e8} .job-content ul.preview-facts{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px} .job-content ul.preview-facts li{background:#fff;border:1px solid rgba(2,69,80,.13);border-radius:999px;padding:7px 13px;font-size:.9rem} .job-content ul.preview-facts li::before{display:none} .preview-hidden{background:#fde8e4;color:#7a2617;padding:10px 14px;border-radius:12px;margin-bottom:18px;display:inline-block}", { raw: true });
 
   var labels = {
-    "primary": "Primary", "secondary": "Secondary", "send": "SEND", "semh": "SEMH",
+    "primary": "Primary", "secondary": "Secondary", "semh-primary": "SEMH Primary", "semh-secondary": "SEMH Secondary",
+    "alternative-provision": "Alternative Provision", "pru": "PRU", "send": "SEND School",
     "cover-supervisors": "Cover supervisors", "teaching-assistants": "Teaching assistants",
     "lsa": "Learning support assistants", "residential": "Residential children's homes",
     "teachers": "Teachers", "hlta": "HLTAs", "speech-language-therapy": "Speech and language therapists",

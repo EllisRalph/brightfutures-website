@@ -101,8 +101,11 @@ SPRITE = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"
 CAT_META = {
     "primary": ("pencil", "school"),
     "secondary": ("cap", "school"),
+    "semh-primary": ("heart", "specialist"),
+    "semh-secondary": ("shield", "specialist"),
+    "alternative-provision": ("running", "specialist"),
+    "pru": ("school", "specialist"),
     "send": ("puzzle", "specialist"),
-    "semh": ("heart", "specialist"),
     "cover-supervisors": ("clipboard", "school"),
     "teaching-assistants": ("users", "school"),
     "lsa": ("smile", "school"),
@@ -113,6 +116,8 @@ CAT_META = {
     "occupational-therapy": ("activity", "specialist"),
     "other-school-roles": ("wrench", "school"),
 }
+# role types listed on the SEND and SEMH page (the client's list of 26 Nov 2026)
+SEND_PAGE_CATS = ("semh-primary", "semh-secondary", "alternative-provision", "pru", "send")
 
 # ---------------------------------------------------------------- data
 TODAY = date.today().isoformat()
@@ -585,8 +590,8 @@ def replace_tokens(body):
         "{{JOB_COUNT}}": str(len(JOBS)),
         "{{CAT_COUNT}}": str(len(CATS)),
         "{{LATEST_JOBS}}": "\n".join(job_card(j, f" reveal reveal-d{i % 3}") for i, j in enumerate(LATEST)),
-        "{{SEND_JOBS}}": "\n".join(job_card(j) for j in JOBS if j["category"] in ("send", "semh")),
-        "{{SEND_COUNT}}": str(sum(1 for j in JOBS if j["category"] in ("send", "semh"))),
+        "{{SEND_JOBS}}": "\n".join(job_card(j) for j in JOBS if j["category"] in SEND_PAGE_CATS),
+        "{{SEND_COUNT}}": str(sum(1 for j in JOBS if j["category"] in SEND_PAGE_CATS)),
         "{{TESTIMONIAL_CARDS}}": "\n".join(review_card(t, i) for i, t in enumerate(TESTIMONIALS)),
         "{{CAT_TILES}}": cat_tiles(),
         "{{JOB_BOARD}}": "\n".join(job_card(j) for j in JOBS),
