@@ -123,6 +123,25 @@ SEND_PAGE_CATS = ("semh-primary", "semh-secondary", "alternative-provision", "pr
 TODAY = date.today().isoformat()
 CATS = json.loads((SRC / "data/categories.json").read_text(encoding="utf-8"))
 CAT_BY_ID = {c["id"]: c for c in CATS}
+# A vacancy saved from an editor tab opened before a role type was replaced keeps the old id.
+# It is moved to the nearest new type instead of being hidden (SEMH School was split on 26 Nov 2026).
+OLD_CATS = {"semh": "semh-secondary"}
+
+
+def check_role_types():
+    """The CMS dropdown (admin/config.yml), categories.json and CAT_META must list the same role
+    types: a job saved with a type the build does not know is left off the site. Stops the build
+    (Netlify then keeps the last good site live) instead of publishing a site with jobs missing."""
+    yml = (ROOT / "admin/config.yml").read_text(encoding="utf-8")
+    block = re.search(r"name: category\n\s+widget: select\n\s+options:\n((?:\s+- \{.*\}\n)+)", yml)
+    in_cms = set(re.findall(r'value: "([^"]+)"', block.group(1))) if block else set()
+    problems = []
+    if in_cms != set(CAT_BY_ID):
+        problems.append(f"CMS role types {sorted(in_cms ^ set(CAT_BY_ID))} are not in both admin/config.yml and categories.json")
+    if set(CAT_META) != set(CAT_BY_ID):
+        problems.append(f"CAT_META and categories.json differ: {sorted(set(CAT_META) ^ set(CAT_BY_ID))}")
+    if problems:
+        raise SystemExit("Role types out of step:\n  " + "\n  ".join(problems))
 
 
 def sane_date(iso, label=""):
@@ -155,6 +174,7 @@ def load_jobs():
             j[k] = str(j.get(k) or "").strip()
         j["posted"] = sane_date(j["posted"], f"(posted, {f.name})")
         j["closing"] = sane_date(j["closing"], f"(closing, {f.name})")
+        j["category"] = OLD_CATS.get(j.get("category"), j.get("category"))
         if j["category"] not in CAT_BY_ID:
             print(f"  ! {f.name}: unknown category {j['category']!r}, skipped")
             continue
@@ -174,6 +194,7 @@ def load_jobs():
     return jobs
 
 
+check_role_types()
 JOBS = load_jobs()
 COUNTS = {c["id"]: sum(1 for j in JOBS if j["category"] == c["id"]) for c in CATS}
 LATEST = ([j for j in JOBS if j.get("featured")] + [j for j in JOBS if not j.get("featured")])[:6]
