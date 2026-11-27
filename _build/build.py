@@ -160,6 +160,26 @@ def slugify(text):
     return re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9]+", "-", text.lower())).strip("-") or "vacancy"
 
 
+def no_ampersand(text):
+    """House rule (Ellis): visible copy says 'and', never '&'. The CMS lets the client type it
+    ('MLD & Complex Needs', 'Primary and & Secondary', 26 Nov 2026); her files stay as she wrote them."""
+    return re.sub(r"(?:[ \t]+and)?[ \t]+&[ \t]+(?:and[ \t]+)?", " and ", text)
+
+
+PHONE_RE = re.compile(r"(?<![\d+])(0\d{3,4} ?\d{3} ?\d{3,4})(?!\d)")
+EMAIL_RE = re.compile(r"(?<![\w.@-])[\w.+-]+@[\w-]+(?:\.[\w-]+)+(?![\w@-])")
+
+
+def link_contacts(html_text):
+    """House rule (Ellis): every phone number and email is a working tel:/mailto: link, also in the
+    text the client writes in the CMS (lsa-rayleigh, 27 Nov 2026). Text already in a link is left alone."""
+    parts = re.split(r"(<a\b.*?</a>|<[^>]+>)", html_text, flags=re.S)
+    for i in range(0, len(parts), 2):
+        parts[i] = PHONE_RE.sub(lambda m: f'<a href="tel:+44{m.group(1).replace(" ", "")[1:]}">{m.group(1)}</a>', parts[i])
+        parts[i] = EMAIL_RE.sub(lambda m: f'<a href="mailto:{m.group(0)}">{m.group(0)}</a>', parts[i])
+    return "".join(parts)
+
+
 def load_jobs():
     jobs, used = [], set()
     for f in sorted((CONTENT / "jobs").glob("*.json")):
@@ -172,6 +192,8 @@ def load_jobs():
         j["slug"] = slug
         for k in ("title", "location", "hours", "start", "pay", "summary", "posted", "closing", "body", "area", "type"):
             j[k] = str(j.get(k) or "").strip()
+            if k in ("title", "location", "hours", "start", "pay", "summary", "body"):
+                j[k] = no_ampersand(j[k])
         j["posted"] = sane_date(j["posted"], f"(posted, {f.name})")
         j["closing"] = sane_date(j["closing"], f"(closing, {f.name})")
         j["category"] = OLD_CATS.get(j.get("category"), j.get("category"))
@@ -202,6 +224,8 @@ LATEST = ([j for j in JOBS if j.get("featured")] + [j for j in JOBS if not j.get
 TESTIMONIALS = []
 for f in sorted((CONTENT / "testimonials").glob("*.json")):
     t = json.loads(f.read_text(encoding="utf-8"))
+    for k in ("name", "who", "quote"):
+        t[k] = no_ampersand(str(t.get(k) or ""))
     if t.get("show", True) and (t.get("quote") or "").strip():
         t["date"] = sane_date(t.get("date"), f"(testimonial {f.name})")
         TESTIMONIALS.append(t)
@@ -656,7 +680,7 @@ def job_page(j):
         facts.append(f'<li>{icon("pound")}{e(j["pay"])}</li>')
     if j.get("closing"):
         facts.append(f'<li>{icon("clock")}Closing date: {nice_date(j["closing"])}</li>')
-    body_html = md_to_html(j["body"])
+    body_html = link_contacts(md_to_html(j["body"]))
     sections = f'<section>{body_html}</section>'
     group = CAT_META[j["category"]][1]
     related = [x for x in JOBS if x["category"] == j["category"] and x["slug"] != j["slug"]]
